@@ -1,7 +1,7 @@
 ---
 title: "Introduction to R Programming"
-author: "Sana Rasheed"
-date: "May 14, 2020"
+author: "Muhammad Shahid Mirza"
+date: "Jan 21, 2021"
 output: html_document
 ---
 
@@ -26,26 +26,43 @@ output: html_document
 #### Start solution ####
 ```
 
+myFirstName <- c("M", "u", "h", "a", "m", "m", "a", "d")
 
 ```{r }
 
 ```
 
+mySecondName <- "Shahid"
+myFName <- paste(myFirstName, collapse = "")
+
+concateName <- c(myFName, mySecondName) 
+concateName
 
 ```{r }
 
 ```
 
+mySeqNum <- c(100:120)
+mySeqNum
 
 ```{r }
 
 ```
 
+matrixDigit <- seq(2,18, by = 2)
+myMatrix <- matrix(matrixDigit,nrow = 3, ncol = 3)
+myMatrix
 
 ```{r }
 
 ```
 
+#### Assign Name To the Variables
+name1 <- "Shahid"
+name2 = "Mirza"
+
+name1
+name2
 
 ```{r }
 #### End solution ####
