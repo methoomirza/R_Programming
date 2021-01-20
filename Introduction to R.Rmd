@@ -78,17 +78,24 @@ name2
 ```{r }
 #### Start solution ####
 ```
-
-
-```{r }
-
-```
-
+  
+  empCategory<-factor(c("Employed","Unemployed","Self-Employed", "Unemployed","Self-Employed"),levels = c("Employed","Unemployed","Self-Employed"))
+  empCategory
 
 ```{r }
 
 ```
 
+levels(empCategory)
+empTab = table(empCategory)
+empTab
+class(empCategory)
+
+```{r }
+
+```
+
+unclass(empCategory)
 
 ```{r }
 
@@ -116,11 +123,21 @@ name2
 #### Start solution ####
 ```
 
+dataBankCust <- data.frame(CustomerID = c("Alicia","Nancy","Fernando","Louis","Diane"), hasAccount = c(NA,"Yes","Yes","Yes",NA), totalBalance = c(NA,10000,100,2000,NA) )
+
+dataBankCust
 
 ```{r }
 
 ```
 
+NumOfRows <- nrow(dataBankCust)
+NumOfCol <- ncol(dataBankCust)
+dataName<- names(data.frame(dataBankCust))
+
+NumOfRows
+NumOfCol
+dataName
 
 ```{r }
 
@@ -157,6 +174,20 @@ name2
 ```{r }
 #### Start solution ####
 ```
+
+numSeq <- c(1:100)
+numSeq
+
+getPrime<-c()
+for(x in numSeq){
+  
+  for(y in x){
+    if( x %% y == 0 )
+      getPrime<-c(getPrime, x)
+  }  
+}
+
+getPrime
 
 
 ```{r }
