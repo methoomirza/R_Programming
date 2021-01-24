@@ -1,7 +1,8 @@
 ---
 title: "Introduction to R Programming"
 author: "Muhammad Shahid Mirza"
-date: "Jan 21, 2021"
+date: "Jan 24, 2021"
+time: "21:35"
 output: html_document
 ---
 
@@ -176,15 +177,18 @@ dataName
 ```
 
 numSeq <- c(1:100)
-numSeq
-
 getPrime<-c()
+
 for(x in numSeq){
-  
-  for(y in x){
-    if( x %% y == 0 )
-      getPrime<-c(getPrime, x)
-  }  
+  if (x >= 2){
+    if(any(numSeq == x)){
+      fPrime = ( (numSeq && x ) != 0 )
+      ##if( (numSeq %% x ) != 0 )
+        a = c(numSeq[fPrime], x)
+      getPrime <- c(getPrime, x)
+      if(length(getPrime) >= 10 ) break
+    }
+  }
 }
 
 getPrime
@@ -227,6 +231,12 @@ getPrime
 ```{r }
 #### Start solution ####
 ```
+
+myMatrix<-matrix(1:9,nrow=3,ncol=3)
+myMatrix
+for(y in 1:ncol(myMatrix))
+  for(x in 1:nrow(myMatrix))
+    print(paste("Row:",x," Column:",y, " = ", myMatrix[x, y] ))
 
 
 ```{r }
@@ -273,11 +283,36 @@ getPrime
 #### Start solution ####
 ```
 
+gcd<-function(a, b){
+#  a <- 22
+#  b <- 11
+#  answer <- 0
+  if(a < b){
+    sNum <- a
+  }else{
+    sNum <- b
+  }
+  divSeq <- 1:sNum
+  for(x in divSeq){
+    if( (a %% x == 0) && (b %% x == 0) ){
+      getANS = x
+    }
+  }
+  return(getANS)
+}
+answer = gcd(22, 11)
+print(paste("GCD: ", answer))
+
 
 ```{r }
 
 ```
 
+firstNum = as.integer( readline(prompt = "Enter First Number: " ))
+secNum = as.integer( readline(prompt = "Enter Second Number: " ))
+
+answer = gcd(firstNum, secNum)
+answer
 
 ```{r }
 
@@ -314,6 +349,17 @@ getPrime
 ```{r }
 #### Start solution ####
 ```
+
+allConditionsMeet <- function(a,b){
+  
+  if( (a < b) && (b > 1) ){
+    return (TRUE)
+  }else{ return (FALSE) }
+  
+}
+
+print(allConditionsMeet(8,4))
+
 
 
 ```{r }
@@ -362,10 +408,34 @@ getPrime
 #### Start solution ####
 ```
 
+matrix_1 <- matrix(1:6,nrow=2, ncol=3);
+matrix_2 <- matrix(1:6,nrow=3, ncol=2);
+
+matrix_1
+matrix_2
+
+# Element-Wise Multiplication not Possible (because sise of matrix differ)
+# Element-wise possible only if take transpose of any Matrix.
+
+# Multiplication of 2 Matrix are
+print( matrix_1 %*% matrix_2 )
+
 
 ```{r }
 
 ```
+
+my_mat <- matrix(11:14, nrow=2, ncol=2)
+my_mat
+
+getDeterminant <- function(getMatrix){
+
+  myDeterminant <- (( getMatrix[1,1]*getMatrix[2,2] )-( getMatrix[1,2]*getMatrix[2,1] ))
+  return(myDeterminant)
+}
+
+getAns <- getDeterminant(my_mat)
+print(paste("Determinant: ",getAns ))
 
 
 ```{r }
@@ -406,10 +476,42 @@ getPrime
 #### Start solution ####
 ```
 
+curr_date <- Sys.Date()
+curr_time <- Sys.time()
+curr_date
+curr_time
+
+cDate <- as.POSIXlt(curr_date)
+cTime <- as.POSIXlt(curr_time)
+
+
+getwkDay <- format(cDate,'%d')
+getMonth <- format(cDate,'%B')
+getYear <- as.numeric(format(cDate,'%Y'))
+
+getHours <- format(cTime,'%H')
+getMints <- format(cTime,'%M')
+getSeconds <- format(cTime,'%S')
+
+
+print(paste("Day: ", getwkDay))
+print(paste("Month: ", getMonth))
+print(paste("Year: ", getYear))
+
+print(paste("Hours: ", getHours))
+print(paste("Minutes: ", getMints))
+print(paste("Seconds: ", getSeconds))
+
+
+print(paste("My Date: ", getwkDay, "-" , getMonth, "-" , getYear))
+print(paste("My Time: ", getHours, ":" , getMints, ":" , getSeconds))
+
+
 
 ```{r }
 
 ```
+
 
 
 ```{r }
@@ -445,6 +547,15 @@ getPrime
 ```{r }
 #### Start solution ####
 ```
+
+myCurr_time <- as.POSIXct(Sys.time())
+myCurr_time
+
+
+GMT_time <- as.POSIXct(myCurr_time, tz="GMT" )
+GMT_time
+
+print (GMT_time - curr_time )
 
 
 ```{r }
@@ -490,6 +601,46 @@ getPrime
 #### Start solution ####
 ```
 
+numbers <- list(100:150)
+numbers
+
+sdL <- lapply(numbers, sd)
+sdS <- sapply(numbers, sd)
+meanL <- lapply(numbers, mean)
+meanS <- sapply(numbers, mean)
+
+print("------ STANDARD DEVIATION ------")
+print(paste("LAPPLY (SD): ", sdL))
+print(paste("SAPPLY (SD): ", sdS))
+
+print(paste("LAPPLY (MEAN): ", meanL))
+print(paste("SAPPLY (MEAN): ", meanS))
+
+mat <- matrix(101:150, 5,10)
+print(paste("My Matrix: ",mat))
+
+apply_mean_row <- apply(mat,1,mean)
+apply_mean_col <- apply(mat,2,mean)
+apply_SD_row <- apply(mat,1,sd)
+apply_SD_col <- apply(mat,2,sd)
+
+apply_mean_row
+apply_mean_col
+
+apply_SD_row
+apply_SD_col
+
+
+tNumbers <- c(101:150)
+tfactor <- gl(5,10)
+tNumbers
+tfactos
+
+TAPPLY_MEAN = tapply(tNumbers, tfactor, mean)
+TAPPLY_SD = tapply(tNumbers, tfactor, sd)
+TAPPLY_MEAN
+TAPPLY_SD
+
 
 ```{r }
 
@@ -529,6 +680,12 @@ getPrime
 ```{r }
 #### Start solution ####
 ```
+
+S6Q2Mat <- matrix(1:16,4,4)
+S6Q2Mat
+
+apply(S6Q2Mat, 1, mean) #ROW-WISE MEAN OF MATRIX
+apply(S6Q2Mat, 2, mean) #COLUMN-WISE MEAN OF MATRIX
 
 
 ```{r }
@@ -587,6 +744,20 @@ head(Orange)
 ```{r }
 #### Start solution ####
 ```
+
+split_data <- split(Orange, Orange$circumference)
+
+split_data$'30'
+split_data$"75"
+
+age1_data <- split_data$'30'
+age2_data <- split_data$'214'
+
+age1_data
+age2_data
+
+mean(age1_data$age)
+mean(age2_data$age)
 
 
 ```{r }
